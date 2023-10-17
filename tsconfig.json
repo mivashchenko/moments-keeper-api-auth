@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "target": "es2022",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "src",
+    "outDir": "dist",
+    "useUnknownInCatchVariables": false,
+    "types": [
+      "node"
+    ]
+  },
+  "lib": [
+    "es2022"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "tests/**/*.ts",
+    "./node_modules/",
+    "./dist/"
+  ]
+}

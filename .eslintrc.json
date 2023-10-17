@@ -1,0 +1,144 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "ignorePatterns": [
+        "dist/"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto",
+                "parser": "typescript",
+                "singleQuote": true,
+                "semi": true,
+                "bracketSpacing": true,
+                "bracketSameLine": false,
+                "trailingComma": "none",
+                "printWidth": 140
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "excludedFiles": [
+                "*.steps.ts",
+                "*.feature.ts",
+                "*.test.ts"
+            ],
+            "parserOptions": {
+                "project": [
+                    "tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "plugins": [
+                "@typescript-eslint"
+            ],
+            "extends": [
+                "airbnb-typescript/base",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true,
+                        "optionalDependencies": false
+                    }
+                ],
+                "@typescript-eslint/no-use-before-define": "off",
+                "no-mixed-spaces-and-tabs": "warn",
+                "no-case-declarations": "off",
+                "no-await-in-loop": "off",
+                "no-plusplus": "off",
+                "radix": "off",
+                "max-len": [
+                    "error",
+                    {
+                        "code": 280
+                    }
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.steps.ts",
+                "*.feature.ts",
+                "*.test.ts"
+            ],
+            "extends": [
+                "airbnb-typescript/base",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:prettier/recommended"
+            ],
+            "parserOptions": {
+                "project": [
+                    "tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true,
+                        "optionalDependencies": false
+                    }
+                ],
+                "@typescript-eslint/no-explicit-any": "off",
+                "no-mixed-spaces-and-tabs": "warn",
+                "eqeqeq": "off",
+                "no-case-declarations": "off",
+                "no-await-in-loop": "off",
+                "no-plusplus": "off",
+                "radix": "off",
+                "max-len": [
+                    "error",
+                    {
+                        "code": 280
+                    }
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.js"
+            ],
+            "extends": [
+                "eslint:recommended",
+                "airbnb-base",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true,
+                        "optionalDependencies": false
+                    }
+                ],
+                "no-mixed-spaces-and-tabs": "warn",
+                "eqeqeq": "off",
+                "no-case-declarations": "off",
+                "no-await-in-loop": "off",
+                "no-plusplus": "off",
+                "radix": "off",
+                "max-len": [
+                    "error",
+                    {
+                        "code": 280
+                    }
+                ]
+            }
+        }
+    ]
+}

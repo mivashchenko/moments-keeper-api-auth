@@ -1,0 +1,40 @@
+version: '3.5'
+services:
+  mongo-moments:
+    container_name: mongo-moments
+    restart: always
+    image: mongo:latest
+    volumes:
+      - mongodb-moments:/data/db
+    ports:
+      - '27018:27017'
+
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo-moments:27017/auth --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - node-webapp-network
+
+  auth-service-moments:
+    container_name: auth-service-moments
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo-moments
+    networks:
+      - node-webapp-network
+
+volumes:
+  mongodb-moments: {}
+
+networks:
+  node-webapp-network:
+    driver: bridge
