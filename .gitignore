@@ -61,3 +61,7 @@ typings/
 
 # next.js build output
 .next
+/.idea/.gitignore
+/.idea/back-auth.iml
+/.idea/modules.xml
+/.idea/vcs.xml
