@@ -29,7 +29,7 @@ class AuthService {
       throw new UnauthorizedError('Invalid pass');
     }
 
-    const token = jwt.sign({ username: user.username, password: user.password, email: user.email }, this.SOLD, {
+    const token = jwt.sign({ id: user._id, username: user.username, password: user.password, email: user.email }, this.SOLD, {
       expiresIn: this.ACCESS_TOKEN_EXPIRES_IN
     });
 
@@ -39,6 +39,12 @@ class AuthService {
       email: user.email,
       token
     };
+  }
+
+  public async signUpUser(user: any): Promise<any> {
+    return jwt.sign({ id: user._id, username: user.username, password: user.password, email: user.email }, this.SOLD, {
+      expiresIn: this.ACCESS_TOKEN_EXPIRES_IN
+    });
   }
 
   /**
@@ -53,18 +59,19 @@ class AuthService {
       throw new ForbiddenError('Google account not verified');
     }
 
-    const user = await userModel.createOrUpdate(googleUser.email, googleUser.name, '');
+    await userModel.createOrUpdate(googleUser.email, googleUser.name, '');
+    const user = await userModel.findByEmail(googleUser.email);
 
-    logger.info(`Login for email: "${user.email}" successfully`);
+    logger.info(`Login for email: "${user?.email}" successfully`);
 
-    const token = jwt.sign({ username: user.username, password: user.password, email: user.email }, this.SOLD, {
+    const token = jwt.sign({ id: user?._id, username: user?.username, password: user?.password, email: user?.email }, this.SOLD, {
       expiresIn: this.ACCESS_TOKEN_EXPIRES_IN
     });
 
     return {
-      _id: user._id,
-      username: user.username,
-      email: user.email,
+      _id: user?._id || '',
+      username: user?.username || '',
+      email: user?.email || '',
       token
     };
   }

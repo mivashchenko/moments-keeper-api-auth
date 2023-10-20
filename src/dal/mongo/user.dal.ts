@@ -1,13 +1,17 @@
-import userSchemaModel from '../../models/mongo/user.schema';
+import UserSchemaModel from '../../models/mongo/user.schema';
 import { IUserMongo } from '../../types/user.type';
 
 class UserDal {
   async findByEmail(email: string) {
-    return userSchemaModel.findOne({ email: email });
+    return UserSchemaModel.findOne({ email: email });
+  }
+
+  async findById(id: string) {
+    return UserSchemaModel.findOne({ _id: id });
   }
 
   async create(email: string, username: string, password: string) {
-    const user = new userSchemaModel({ email, username, password });
+    const user = new UserSchemaModel({ email, username, password });
     return user.save();
   }
 

@@ -11,6 +11,10 @@ class User {
     return this.repo.findByEmail(email);
   }
 
+  async findById(email: string) {
+    return this.repo.findById(email);
+  }
+
   async create(email: string, username: string, password: string) {
     const user = await this.repo.findByEmail(email);
 
@@ -25,8 +29,7 @@ class User {
     const user = await this.repo.findByEmail(email);
 
     if (user) {
-      const user2 = this.repo.update(user, email, username, password);
-      return user2;
+      return this.repo.update(user, email, username, password);
     }
 
     return this.repo.create(email, username, password);

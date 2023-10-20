@@ -18,7 +18,7 @@ class AuthValidator {
         .isLength({ min: 3 })
         .withMessage('Must be minimum 3 symbols'),
       body('password').notEmpty().withMessage('Must not be empty').isLength({ min: 6 }),
-      body('password-confirm')
+      body('passwordConfirm')
         .exists()
         .withMessage('You must type a confirmation password')
         .custom((value, { req }) => {
